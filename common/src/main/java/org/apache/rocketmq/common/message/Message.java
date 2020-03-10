@@ -22,22 +22,57 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * 消息信息
+ */
 public class Message implements Serializable {
     private static final long serialVersionUID = 8445773977080406428L;
 
+    /**
+     * 主题
+     */
     private String topic;
+    /**
+     * 网络通信层标记
+     */
     private int flag;
+    /**
+     * 配置信息
+     */
     private Map<String, String> properties;
+    /**
+     * 消息体，即发送的消息的具体信息
+     */
     private byte[] body;
+    /**
+     * 事务消息相关的事务id
+     */
     private String transactionId;
 
+    /**
+     * 无参构造函数
+     */
     public Message() {
     }
 
+    /**
+     * 构造函数
+     * @param topic 主题
+     * @param body 消息内容
+     */
     public Message(String topic, byte[] body) {
         this(topic, "", "", 0, body, true);
     }
 
+    /**
+     * 构造函数
+     * @param topic 主题
+     * @param tags 消息标签
+     * @param keys 业务主键
+     * @param flag 网络通信层标记
+     * @param body 消息内容
+     * @param waitStoreMsgOK 在同步刷盘情况下是否需要等待数据落地才认为消息发送成功
+     */
     public Message(String topic, String tags, String keys, int flag, byte[] body, boolean waitStoreMsgOK) {
         this.topic = topic;
         this.flag = flag;
@@ -52,14 +87,31 @@ public class Message implements Serializable {
         this.setWaitStoreMsgOK(waitStoreMsgOK);
     }
 
+    /**
+     * 构造函数
+     * @param topic 消息主题
+     * @param tags 消息标签
+     * @param body 消息内容
+     */
     public Message(String topic, String tags, byte[] body) {
         this(topic, tags, "", 0, body, true);
     }
 
+    /**
+     * 构造函数
+     * @param topic 消息主题
+     * @param tags 消息标签
+     * @param keys 业务主键
+     * @param body 消息内容
+     */
     public Message(String topic, String tags, String keys, byte[] body) {
         this(topic, tags, keys, 0, body, true);
     }
 
+    /**
+     * 设置业务主键
+     * @param keys 业务主键
+     */
     public void setKeys(String keys) {
         this.putProperty(MessageConst.PROPERTY_KEYS, keys);
     }
@@ -72,6 +124,10 @@ public class Message implements Serializable {
         this.properties.put(name, value);
     }
 
+    /**
+     * 清空属性值
+     * @param name 属性名称
+     */
     void clearProperty(final String name) {
         if (null != this.properties) {
             this.properties.remove(name);

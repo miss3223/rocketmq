@@ -29,9 +29,11 @@ public interface MQAdmin {
     /**
      * Creates an topic
      *
-     * @param key accesskey
-     * @param newTopic topic name
-     * @param queueNum topic's queue number
+     * 创建一个主题
+     *
+     * @param key accesskey 鉴权key
+     * @param newTopic topic name 主题的名称
+     * @param queueNum topic's queue number 主题队列号
      */
     void createTopic(final String key, final String newTopic, final int queueNum)
         throws MQClientException;
@@ -39,10 +41,10 @@ public interface MQAdmin {
     /**
      * Creates an topic
      *
-     * @param key accesskey
-     * @param newTopic topic name
-     * @param queueNum topic's queue number
-     * @param topicSysFlag topic system flag
+     * @param key accesskey 鉴权key
+     * @param newTopic topic name 主题的名称
+     * @param queueNum topic's queue number 主题队列号
+     * @param topicSysFlag topic system flag  主题系统标识
      */
     void createTopic(String key, String newTopic, int queueNum, int topicSysFlag)
         throws MQClientException;
@@ -50,9 +52,10 @@ public interface MQAdmin {
     /**
      * Gets the message queue offset according to some time in milliseconds<br>
      * be cautious to call because of more IO overhead
-     *
-     * @param mq Instance of MessageQueue
-     * @param timestamp from when in milliseconds.
+     *  获取消息队列偏移量，以毫秒为单位。
+     *  由于IO开销较大，请谨慎调用
+     * @param mq Instance of MessageQueue MessageQueue的实例
+     * @param timestamp from when in milliseconds. 时间戳
      * @return offset
      */
     long searchOffset(final MessageQueue mq, final long timestamp) throws MQClientException;
@@ -60,32 +63,40 @@ public interface MQAdmin {
     /**
      * Gets the max offset
      *
-     * @param mq Instance of MessageQueue
-     * @return the max offset
+     * 获取最大的偏移量
+     *
+     * @param mq Instance of MessageQueue  MessageQueue的实例
+     * @return the max offset  返回最大的偏移量
      */
     long maxOffset(final MessageQueue mq) throws MQClientException;
 
     /**
      * Gets the minimum offset
      *
-     * @param mq Instance of MessageQueue
-     * @return the minimum offset
+     * 获取最小的偏移量
+     *
+     * @param mq Instance of MessageQueue MessageQueue的实例
+     * @return the minimum offset  返回最小的偏移量
      */
     long minOffset(final MessageQueue mq) throws MQClientException;
 
     /**
      * Gets the earliest stored message time
      *
-     * @param mq Instance of MessageQueue
-     * @return the time in microseconds
+     *  获取最早存储的消息时间
+     *
+     * @param mq Instance of MessageQueue   MessageQueue的实例
+     * @return the time in microseconds 最早存储的时间
      */
     long earliestMsgStoreTime(final MessageQueue mq) throws MQClientException;
 
     /**
      * Query message according tto message id
      *
-     * @param offsetMsgId message id
-     * @return message
+     * 根据消息id查询消息
+     *
+     * @param offsetMsgId message id 消息id
+     * @return message 消息
      */
     MessageExt viewMessage(final String offsetMsgId) throws RemotingException, MQBrokerException,
         InterruptedException, MQClientException;

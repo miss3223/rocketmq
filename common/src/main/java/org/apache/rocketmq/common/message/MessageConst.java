@@ -18,17 +18,51 @@ package org.apache.rocketmq.common.message;
 
 import java.util.HashSet;
 
+/**
+ * 消息的一些配置信息
+ */
 public class MessageConst {
+
+    /**
+     * 业务主键
+     */
     public static final String PROPERTY_KEYS = "KEYS";
+    /**
+     *  消息标签 在消费消息的时候可以通过tag进行消息过滤判定
+     */
     public static final String PROPERTY_TAGS = "TAGS";
+    /**
+     * 在同步刷盘情况下是否需要等待数据落地才认为消息发送成功
+     */
     public static final String PROPERTY_WAIT_STORE_MSG_OK = "WAIT";
+    /**
+     *  消息的延迟处理等级，不同级别对应不同延迟时间
+     */
     public static final String PROPERTY_DELAY_TIME_LEVEL = "DELAY";
+    /**
+     * 消息重试
+     */
     public static final String PROPERTY_RETRY_TOPIC = "RETRY_TOPIC";
+    /**
+     * 消息所属的真正的topic
+     */
     public static final String PROPERTY_REAL_TOPIC = "REAL_TOPIC";
+    /**
+     * 消息所属的真正的队列ID
+     */
     public static final String PROPERTY_REAL_QUEUE_ID = "REAL_QID";
+    /**
+     *
+     */
     public static final String PROPERTY_TRANSACTION_PREPARED = "TRAN_MSG";
     public static final String PROPERTY_PRODUCER_GROUP = "PGROUP";
+    /**
+     * 最小偏移量
+     */
     public static final String PROPERTY_MIN_OFFSET = "MIN_OFFSET";
+    /**
+     * 最大偏移量
+     */
     public static final String PROPERTY_MAX_OFFSET = "MAX_OFFSET";
     public static final String PROPERTY_BUYER_ID = "BUYER_ID";
     public static final String PROPERTY_ORIGIN_MESSAGE_ID = "ORIGIN_MESSAGE_ID";
